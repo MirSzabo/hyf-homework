@@ -1,0 +1,325 @@
+/*1. GLOBAL STYLES*/
+/*I used the styling of all HTML elements to a consistent baseline*/
+* {
+    margin: 0;
+    padding: 0;
+  }
+  html {
+    box-sizing: border-box; /*universal Box Sizing with Inheritance*/
+    scroll-behavior: smooth; /*smooth scrolling for the whole page*/
+  }
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+  /*-------1.1 body and headers--------*/
+  body {
+    font-size: 16px;
+    width: 100%;
+    margin: auto;
+    font-family: 'Space Mono',monospace;
+    background: linear-gradient(to right, rgba(59, 141, 153, 0.7), rgba(107, 107, 131, 0.7), rgba(170, 75, 107, 0.7)),
+      url("https://regmedia.co.uk/2016/10/17/javascript_photo_via_shutterstock.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+   h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: inherit;
+  }
+  h3 {
+    font-size: 1.5rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  h4 {
+    font-size: 1.5rem;
+    color: rgba(170, 75, 107, 1);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+/*2. NAVIGATION BAR*/
+  .top-bar {
+    display: flex;
+    flex-direction: row wrap;
+    width: 80%; /*set up of the area*/
+    margin: 40px auto 40px;
+  }
+  .name {
+    width: 55%;
+    color: white;
+  }
+  .navigation {
+    width: 45%;
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .navigation ul {
+    list-style: none;
+  }
+  .navigation ul li {
+    float: left;
+  }
+  .navigation ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 1rem;
+    color: white;
+  
+    transition: 300ms all ease;
+  }
+  /*hover styling*/
+  .navigation a:hover {
+    color: rgb(233, 166, 67);
+  }
+  
+  /*-------2.1 responsive design--------*/
+  /* Medium screens */
+  @media all and (max-width: 900px) {
+    .top-bar {
+      justify-content: center;
+    }
+  }
+  /* Small screens */
+  @media all and (max-width: 600px) {
+    .top-bar {
+      flex-flow: column wrap;
+    }
+    .name {
+      width: 100%;
+    }
+    .navigation a {
+      text-align: center;
+    }
+  }
+
+  /*3. BASIC INFO*/
+  .basic-info {
+    display: flex;
+    width: 80%;
+    margin: 20px auto 40px;
+    color: white;
+    flex-flow: row wrap;
+    justify-content: space-around;
+  }
+  .profile-photo {
+    width: 30%;
+    margin: auto;
+  }
+  .my-photo {
+    height: 300px;
+    width: 210px;
+    display: block;
+  }
+  .contact-info {
+    width: 35%;
+  }
+  .about-me {
+    width: 35%;
+    line-height: 1.5;
+    text-align: justify;
+  }
+  .table {
+    display: table;
+    max-width: 100%;
+    line-height: 1.5;
+  }
+  .row {
+    display: table-row;
+  }
+  .cell {
+    display: table-cell;
+    padding: 10px;
+  }
+  .cell a {
+    padding: 0 10px;
+    font-size: 1rem;
+    color: white;
+       
+   transition: 300ms all ease;
+  }
+  /*hover styling*/
+  .cell a:hover {
+    color: rgb(233, 166, 67);
+  }
+  
+  /*-------3.1 responsive design--------*/
+  /* Medium screens */
+  @media all and (max-width: 900px) {
+    .basic-info {
+      flex-flow: column wrap;
+    }
+    .contact-info {
+      width: 100%;
+    }
+    .about-me {
+      width: 100%;
+      line-height: 1.5;
+    }
+  }
+  /* Small screens */
+  @media all and (max-width: 600px) {
+    .basic-info {
+      flex-flow: column wrap;
+    }
+    .contact-info {
+      width: 100%;
+    }
+    .about-me {
+      width: 100%;
+      line-height: 1.5;
+    }
+  }
+  
+  /*4. ADDITIONAL INFO*/
+.additional-info{
+    display: flex;
+    width: 100%;
+    margin: 20px auto 40px;
+    flex-flow: row wrap;
+    justify-content: center;
+    background: linear-gradient(to left, rgba(59, 141, 153, 1), rgba(107, 107, 131, 1), rgba(170, 75, 107, 1));
+    list-style: none;
+    color: white;
+}
+.sub-section{
+    background: linear-gradient(to right, rgba(59, 141, 153, 0.3), rgba(107, 107, 131, 0.3), rgba(170, 75, 107, 0.3));
+    padding: 15px;
+    width: 40%;
+    margin: 60px 10px;
+    text-align: center;
+  }
+.list_item {
+  display: flex;
+}
+.list_year {
+  margin-right: 20px;
+  font-weight: bold;
+}
+  /*-------4.1 responsive design--------*/
+  /* Medium screens */
+  @media all and (max-width: 900px) {
+    .additional-info {
+      justify-content: space-around;
+    }
+    .sub-section{
+      margin: 0;
+      width: 100%;
+  }
+  }
+  /* Small screens */
+  @media all and (max-width: 600px) {
+    .additional-info {
+      flex-flow: column wrap;
+    }
+  }
+  
+/*5. EDUCATION INFO*/
+.education-info{
+    display: flex;
+    width: 88%;
+    margin: 20px auto 40px;
+    flex-flow: row wrap;
+    justify-content: space-around;
+}
+.learning{
+    width: 60%;
+    text-align: center;
+    border: 2px solid;
+    padding: 30px;
+    background:  rgba(155, 155, 182, 1);
+    color: rgba(59, 141, 153, 1);
+}
+  .learning ul {
+    list-style: none;
+  }
+
+  .learning ul li p{
+    padding: 0.5rem;
+    text-align: left;
+}
+  .learning ul li a{
+    text-decoration: none;
+    padding: 0.5rem;
+    color: white;
+
+    transition: 300ms all ease;
+  }
+  /*hover styling*/
+  .learning a:hover {
+    color: rgb(233, 166, 67);
+  }
+  
+  .hyf{
+    width: 30%;
+    text-align: center;
+    border: 2px solid;
+    background:  rgba(155, 155, 182, 1);
+    padding: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: rgba(59, 141, 153, 1);
+    height: 50%;
+  }
+  .hyf ul {
+    list-style: none;
+  }
+  .hyf ul li a{
+    text-decoration: none;
+    padding: 0.5rem;
+    color: white;
+
+    transition: 300ms all ease;
+}
+/*hover styling*/
+.hyf a:hover {
+  color: rgb(233, 166, 67);
+}
+  /*-------5.1 responsive design--------*/
+  /* Medium screens */
+  @media all and (max-width: 900px) {
+    .education-info {
+      justify-content: space-around;
+    }
+  }
+  /* Small screens */
+  @media all and (max-width: 600px) {
+    .education-info {
+      flex-flow: column wrap;
+   }
+   .hyf{
+      width:100%;
+ }
+   .learning{
+      width:100%;
+ }
+  }
+/*6. FOOTER*/
+  .footer-section {
+    background:rgba(59, 141, 153, 1);
+    width: 100%;
+    justify-content: space-around;
+    padding-bottom: 40px;
+  }
+  .footer-author {
+    margin: 10px;
+    width: 20%;
+    float: right;
+    color: white;
+    font-size: 1rem;
+  }
+  /*-------6.1 responsive design--------*/
+  /* Medium screens */
+  @media all and (max-width: 900px) {
+    .footer-author  {
+      width: 100%;
+      float:left;
+    }
+  }
+
+  
