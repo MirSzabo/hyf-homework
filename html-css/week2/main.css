@@ -1,0 +1,310 @@
+/*Table of Content:
+    1. general set up
+    2. header
+    3. navigation bar
+    4. image
+    5. article
+    6. gallery
+    7. footer*/
+
+/*1. GENERAL SET UP*/
+/*https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/*/
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+body {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: auto; 
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 16px;
+}
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 2rem;
+  padding: 30px 0 10px;
+}
+h2 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 10px;
+  font-size: 1.5rem;
+}
+h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 20px;
+}
+
+/*2. HEADER*/
+.header {
+  background-color: rgb(250, 250, 250);
+  border-bottom-style: ridge;
+  border-color: rgb(251, 251, 251);
+  border-width: 3px;
+}
+.title {
+  width: 70%;
+  margin: auto;
+}
+.header p {
+  font-family: OpenSansBold, sans-serif;
+  text-transform: lowercase;
+  color: rgb(128, 128, 128);
+  padding-bottom: 50px;
+}
+
+/*3. NAVIGATION BAR*/
+.navbar ul {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.navbar ul li {
+  list-style: none;
+}
+.navbar ul li a {
+  font-family: OpenSansBold, sans-serif;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0 20px;
+  color: rgb(10, 10, 10);
+  line-height: 60px;
+  text-decoration: none;
+
+  transition: 300ms all ease;
+}
+.navbar ul li a:hover {
+  color: rgb(128, 128, 128);
+}
+/* Medium screens */
+@media all and (max-width: 900px) {
+  .navbar ul {
+    /* When on medium sized screens, we center it by evenly distributing empty space around items */
+    justify-content: space-around;
+  }
+}
+/* Small screens */
+@media all and (max-width: 600px) {
+  .navbar ul {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+    width: 100%;
+    padding: 0 50px;
+  }
+  .navbar ul li a {
+    line-height: 30px;
+  }
+}
+
+/*4. IMAGE*/
+.image-office {
+  height: 500px;
+  display: block;
+}
+/* Medium screens */
+@media all and (max-width: 900px) {
+  .image-office {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/*5. ARTICLE*/
+.article {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  word-break: break-word;
+  width: 70%;
+  margin: auto;
+}
+.article-industry {
+  width: 37%;
+  padding: 40px 70px 40px 0;
+  hyphens: manual;
+}
+.article-industry p {
+  font-size: 0.9rem;
+}
+.article-development {
+  width: 63%;
+  padding: 40px 35px;
+  hyphens: manual;
+}
+.article-development p {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+}
+/* Medium screens */
+@media all and (max-width: 900px) {
+  .article {
+    flex-direction: column;
+    width: 100%;
+  }
+  .article-industry {
+    width: 100%;
+    hyphens: none;
+    order: 2;
+    padding: 20px 35px;
+  }
+  .article-development {
+    width: 100%;
+    hyphens: none;
+    order: 1;
+  }
+  br {
+    /* hide the BR tag for wider screens (i.e. disable the line break)*/
+    display: none;
+  }
+}
+/* Small screens */
+@media all and (max-width: 600px) {
+  .article-development {
+    padding-bottom: 0px;
+  }
+  .article-development p {
+    margin-bottom: 0px;
+  }
+}
+
+/*6. GALLERY*/
+.gallery {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  margin: auto;
+}
+.logo {
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+}
+.images-info {
+  width: 37%;
+  padding: 40px 50px 0px 0;
+}
+.images-info p {
+  font-size: 0.9rem;
+  padding-bottom: 30px;
+}
+.logotypes {
+  width: 63%;
+  padding: 40px 0 50px 35px;
+}
+.logotypes ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.gallery ul li {
+  list-style: none;
+}
+/* Medium screens */
+@media all and (max-width: 900px) {
+  .gallery {
+    flex-direction: column;
+    padding: 40px 35px;
+    width: 100%;
+  }
+  .logo {
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+  }
+  .images-info {
+    width: 100%;
+    padding: 0;
+  }
+  .logotypes {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+/*7. FOOTER*/
+.main-block {
+  background-color: rgb(103, 54, 206);
+  font-family: OpenSansBold, sans-serif;
+  color: rgb(255, 255, 255);
+  padding-top: 30px;
+  padding-bottom: 40px;
+}
+.footer {
+  width: 70%;
+  margin: auto;
+  display: flex;
+}
+.footer-section {
+  width: 25%;
+  padding-right: 60px;
+}
+.footer-section:last-child {
+  padding-right: 0; /*we dont want to have any right padding on the last section*/
+}
+.map {
+  max-width: 100%;
+  height: auto;
+}
+.footer-title {
+  line-height: 20px;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.footer ul li {
+  list-style: none;
+  line-height: 25px;
+}
+/*.footer ul li:hover { margin-left:50px; }*/
+
+.footer ul li a {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  display: block;
+}
+
+.footer-section:nth-child(3) ul:nth-child(1) li:nth-child(n + 3) {
+  border-top: 1px solid #888;
+}
+.footer-section:nth-child(4) ul:nth-child(1) li:nth-child(n + 3) {
+  border-top: 1px solid #888;
+}
+.footer-section:nth-child(3) ul:nth-child(1) li:nth-child(n + 2) {
+  line-height: 3;
+}
+.footer-section:nth-child(4) ul:nth-child(1) li:nth-child(n + 2) {
+  line-height: 3;
+}
+/* Medium screens */
+@media all and (max-width: 900px) {
+  .footer {
+    flex-direction: column;
+  }
+  .footer-section {
+    width: 100%;
+    padding-right: 0px;
+  }
+}
+/* Small screens */
+@media all and (max-width: 600px) {
+  #navigation.footer-section {
+    display: none;
+  }
+  /*.footer ul li:hover { margin-left:0px; }*/
+}
