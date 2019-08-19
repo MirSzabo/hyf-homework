@@ -75,7 +75,7 @@ section p {
 }
 @media all and (max-width: 900px) {
   section p  {
-    margin-right: 100%;
+    margin-right: 0%;
   }
 }
 
