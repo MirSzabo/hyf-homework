@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Form excercise week3 part1</title>
+  </head>
+  <body>
+    <header>
+        <div class="logo">Logo</div>
+        <div class="navigation">Navigation</div>
+    </header>
+    <section>
+    <h1>Singn up to yourcustomtailor.com</h1>
+    <p>
+      We can't wait to help you improve your life-style and gain the attention
+      from people around you!
+    </p>
+    <p>
+      Sign up below to to save up to 70% on apparel, hand-bags and cosmetics.
+      Our agents are busy picking the best offers that match your preferencies
+      and style. Every week we will send you a hand-picked selection - we just
+      need to know a few details about you first...
+    </p>
+  </section>
+    <h2>Step 1/4 - tell us who you are?</h2>
+    <!-- progress bar start -->
+    <p><strong>Progress</strong></p>
+    <div class="wrapper">
+      <div class="progress-bar">
+        <span class="progress-bar-fill" style="width: 5%;"></span>
+      </div>
+    </div>
+    <!-- progress bar end -->
+    <p>
+      Nice to meet you. Let's spend a minute to know each other? Please enter
+      the following:
+    </p>
+    <form action="/action_page.php">
+          <!-- table start -->
+      <table>
+        <tr>
+          <td class="label">
+            <label for="name"><strong>First name*</strong></label>
+          </td>
+          <td><input type="text" id="name" required /></td>
+          <td class="label">
+            <label for="surname"><strong>Last name*</strong></label>
+          </td>
+          <td><input type="text" id="surname" required /></td>
+        </tr>
+        <tr>
+          <td class="label">
+            <label for="country"><strong>Country*</strong></label>
+          </td>
+          <td>
+            <select name="countries" id="country" required>
+              <option value="" selected></option>
+              <option value="Slovakia">Slovakia</option>
+              <option value="Denmark">Denmark</option>
+              <option value="Germany">Germany</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            <label for="address"><strong>Street address*</strong> </label>
+          </td>
+          <td><input type="text" id="address" required /></td>
+          <td class="label">
+            <label for="post"><strong>Post code*</strong> </label>
+          </td>
+          <td><input type="text" id="post" size="4" required /></td>
+        </tr>
+      </table>
+
+      <table>
+        <tr>
+          <td>
+            <label for="description"
+              ><strong>Profile description</strong> <br />
+              <i
+                >Please provide a short <br />
+                description of yourself to be <br />
+                displayed on our social <br />
+                community pages.</i
+              >
+            </label>
+          </td>
+          <td>
+            <textarea id="desc" maxlength="500" cols="50" rows="8"></textarea>
+          </td>
+        </tr>
+      </table>
+
+      <!-- table end -->
+      <div>
+        <p>
+          Use the same address for billing and shipping? Uncheck below to fill
+          out a separate shipping address.
+        </p>
+      </div>
+      <!-- check box start -->
+      <div>
+        <label for="toggle-1"><strong>Shipping address</strong></label>
+        <input type="checkbox" checked id="toggle-1" />
+        <div class="shipping-address">
+            <table>
+                <tr>
+                  <td class="label">
+                    <label for="name"><strong>First name*</strong></label>
+                  </td>
+                  <td><input type="text" id="name" required /></td>
+                  <td class="label">
+                    <label for="surname"><strong>Last name*</strong></label>
+                  </td>
+                  <td><input type="text" id="surname" required /></td>
+                </tr>
+                <tr>
+                  <td class="label">
+                    <label for="country"><strong>Country*</strong></label>
+                  </td>
+                  <td>
+                    <select name="countries" id="country" required>
+                      <option value="" selected></option>
+                      <option value="Slovakia">Slovakia</option>
+                      <option value="Denmark">Denmark</option>
+                      <option value="Germany">Germany</option>
+                    </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="label">
+                    <label for="address"><strong>Street address*</strong> </label>
+                  </td>
+                  <td><input type="text" id="address" required /></td>
+                  <td class="label">
+                    <label for="post"><strong>Post code*</strong> </label>
+                  </td>
+                  <td><input type="text" id="post" size="4" required /></td>
+                </tr>
+              </table>
+        
+              <table>
+                <tr>
+                  <td>
+                    <label for="description"
+                      ><strong>Profile description</strong> <br />
+                      <i
+                        >Please provide a short <br />
+                        description of yourself to be <br />
+                        displayed on our social <br />
+                        community pages.</i
+                      >
+                    </label>
+                  </td>
+                  <td>
+                    <textarea id="desc" maxlength="500" cols="50" rows="8"></textarea>
+                  </td>
+                </tr>
+              </table>
+        </div>
+      </div>
+      <!-- check box end -->
+      <div class="button"><a href="index2.html"><strong>Next step</strong></a></div>
+    </form>
+  </body>
+</html>
