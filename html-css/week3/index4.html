@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
+    <title>Form excercise week3 part4</title>
+  </head>
+  <body>
+      <header>
+          <div class="logo">Logo</div>
+          <div class="navigation">Navigation</div>
+      </header>
+    <h1>Singn up to yourcustomtailor.com</h1>
+    <h2>Step 4/4 - Payment</h2>
+    <!-- progress bar start -->
+    <p><strong>Progress</strong></p>
+    <div class="wrapper">
+      <div class="progress-bar">
+        <span class="progress-bar-fill" style="width: 90%;"></span>
+      </div>
+    </div>
+    <!-- progress bar end -->
+    <p>Please fill in your payment data</p>
+    <form action="action=/action_page.php">
+      <!-- table start -->
+      <table>
+        <tr>
+          <td class="label">
+            <label for="card-name"><strong>Name on card</strong></label>
+          </td>
+          <td><input type="text" id="card-name" required/></td>
+        </tr>
+        <tr>
+          <td class="label">
+            <label for="card-type"><strong>Card type</strong></label>
+          </td>
+          <td>
+            <select name="cards" id="card-type" required>
+              <option value="" selected></option>
+              <option value="Mastercard">Mastercard</option>
+              <option value="Visa">Visa</option>
+              <option value="AmericanExpress">AmericanExpress</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td class="label">
+            <label for="number"><strong>Credit card number</strong> </label>
+          </td>
+          <td><input type="text" id="number" pattern="\d{16}" required /></td>
+          <td class="label">
+            <label for="name"><strong>First name</strong> </label>
+          </td>
+          <td><input type="text" id="name" required /></td>
+        </tr>
+
+        <tr>
+          <!-- expiry month -->
+          <td class="label">
+            <label for="month"><strong>Expiry month</strong> </label>
+          </td>
+          <td>    
+            <select id="exp-month" required>
+              <option value=""></option>
+              <option value="01">01</option>
+              <option value="02">02</option>
+              <option value="03">03</option>
+              <option value="04">04</option>
+              <option value="05">05</option>
+              <option value="06">06</option>
+              <option value="07">07</option>
+              <option value="08">08</option>
+              <option value="09">09</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+            </select></td>
+          <!-- expiry year -->
+          <td class="label">             
+            <label for="year"><strong>Expiry year</strong> </label>
+          </td>
+          <td>
+            <select id="exp-year" required>
+              <option value=""></option>
+              <option value="2019"> 2019</option>
+              <option value="2020"> 2020</option>
+              <option value="2021"> 2021</option>
+              <option value="2022"> 2022</option>
+              <option value="2023"> 2023</option>
+              <option value="2024"> 2024</option>
+            </select>
+         </td>
+        </tr>
+        <tr>
+          <td class="label">
+            <label for="ccv"><strong>CCV</strong></label>
+          </td>
+          <td><input type="text" size="3" id="ccv" pattern="\d{3}" required /></td>
+        </tr>
+      </table>
+
+      <!-- table end -->
+      <div>
+        <button class="button" type="submit"><strong>Next step</strong></button>
+      </div>
+    </form>
+  </body>
+</html>
