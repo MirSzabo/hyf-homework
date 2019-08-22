@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" href="main.css" />
+    <script src = "https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src = "form-jquery.js"></script>
+    <title>Form excercise JS try</title>
+</head>
+<body>
+  <h1>Contact me</h1>
+  <form action=""></form>
+  <label>Email
+    <input type="email" class="email" name="email">
+  </label>
+  <label>Message
+      <textarea name="message" class="message" cols="30" rows="5"></textarea>
+  </label>
+  <div class="status"></div>
+  <button type="submit" class="submit">Send</button>
+</body>
+</html>
+console.log("it works")
+$(document).ready(function () {
+ $(".submit").click(function (event) {
+     event.preventDefault()
+     console.log("clicked")
+
+     let email = $(".email").val()
+     let message = $(".message").val()
+     let statusElm = $(".status")
+     statusElm.empty()
+
+     if(email.lenght > 5 && email.includes("@") && email.includes(".")) {
+        statusElm.append("<div>Email is valid</div>")
+     } else {
+        event.preventDefault()
+        statusElm.append("<div>Email is not valid</div>")
+     }
+
+     if(message.lenght < 5) {
+        statusElm.append("<div>Message is valid</div>")
+    } else {
+        event.preventDefault()
+          statusElm.append("<div>Message is not valid</div>")
+    }
+
+ }) 
+})
+
