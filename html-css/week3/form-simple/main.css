@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  display: flex;
+  font-size: 16px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#myForm{
+  margin: 40px;
+}
+h2{
+  text-align: center;
+}
+li {
+  list-style: none;
+  padding: 30px;
+  text-align: end;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 10px;
+  
+}
+
+.first {
+  background-color: lightblue;
+  text-align: end;
+  display: block;
+}
+.second{
+  background-color: lightskyblue;
+  text-align: end;
+  display: none;
+}
+.third{
+  background-color: lightseagreen;
+  text-align: end;
+  display: none;
+}
