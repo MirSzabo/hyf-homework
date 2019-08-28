@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <title>Form excercise JS try</title>
+</head>
+
+<body>
+  <form action="index2.html" novalidate method="post" id="myForm"></form>
+   <ul>
+     <li class="first">
+        <!-- first page -->
+        <h2>First page</h2>
+        <div class="row">
+          <!-- first name -->
+          <div>
+            <label for="name"><strong>First name*</strong></label>
+            <input type="text" id="name" name="First name" />
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <!-- surname -->
+          <div>
+            <label for="surname"><strong>Last name*</strong></label>
+            <input type="text" id="surname" name="Last name" />
+            <div class="status" aria-live="polite"></div>
+          </div>
+          </div>
+          <button id="button-first" type="submit">Next step</button>
+     </li>
+     <li class="second">
+        <!-- second page -->
+        <h2>Second page</h2>
+        <div class="row">
+            <!-- email -->
+          <div>
+            <label for="email"><strong>Email*</strong></label>
+            <input type="email" id="email" name="Email" />
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <!-- phone -->
+          <div>
+            <label for="phone"><strong>Phone number</strong></label>
+            <input type="tel" id="phone" name="Phone number" />
+            <div class="status" aria-live="polite"></div>
+          </div>
+        </div>
+        <button id="button-second-back" type="submit">Previous step</button>
+        <button id="button-second" type="submit">Next step</button>
+     </li>
+     <li class="third">
+       <!-- third page -->
+       <h2>Third page</h2>
+        <div class="row">
+          <!-- password -->
+          <div>
+            <label for="psw"><strong>Password*</strong></label>
+            <input type="password" id="psw" name="Password" />
+            <div class="status" aria-live="polite"></div>
+          </div>
+          <!-- confirm password -->
+            <div>
+              <label for="re-psw"><strong> Re-enter Password*</strong> </label>
+              <input type="password" id="re-psw" name="Confirm password" />
+              <div class="status" aria-live="polite"></div>
+            </div>
+          </div>
+        <button id="button-third-back" type="submit">Previous step</button>
+        <button id="button-third" type="submit">Submit</button>
+     </li>
+   </ul>
+  </form>
+  <script src="form.js"></script>
+</body>
+
+</html>
