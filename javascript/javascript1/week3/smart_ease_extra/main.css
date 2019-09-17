@@ -1,0 +1,11 @@
+body {
+    width: 100%;
+    margin: auto;
+    font-family: 'Space Mono',monospace;
+    text-align: center;
+  }
+
+li{
+    text-align: center;
+    list-style: none;
+}
