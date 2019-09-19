@@ -34,18 +34,18 @@ console.log(songDatabase);
 
 //Searching for a song
 function getSongByTitle(title) {
-for (const song of songDatabase) {
-if (song.title === title) {
-  return song;
+  for (const song of songDatabase) {
+    if (song.title === title) {
+      return song;
+    }
   }
-}
-//return fuzzySearch(title); //unfortunatelly I didn't create nothing usefull yet, if I will add the function I will write you
+      return false;
 }
 const searchedSong = getSongByTitle('When is enough too little?');
 console.log(searchedSong); // returns { songId: 4, title: 'When is enough too little', artist: 'The spies girls'}
 
 const searchedSong2 = getSongByTitle('When is enough too');
-console.log(searchedSong2); // returns undefined
+console.log(searchedSong2); // returns false
 
 const searchedSong3 = getSongByTitle('Blacker than black');
 console.log(searchedSong3); // returns { songId: 3, title: 'Blacker than black', artist: 'Instant coffee',}

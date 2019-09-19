@@ -1,5 +1,5 @@
 //Series duration of my life
-const seriesDurations = [
+const seriesDuration = [
   {
     title: "Game of thrones",
     days: 3,
@@ -20,20 +20,20 @@ const seriesDurations = [
   }
 ];
 
-function durationOfMyLife() {
+function durationOfMyLife(seriesArray) {
   const averageYears = 80;
   const averageMinutes = averageYears * 525600;
   let total = 0;
 
-  for (let i = 0; i < seriesDurations.length; i++) {
-    const daysToMinutes = seriesDurations[i].days * 1440;
-    const hoursToMinutes = seriesDurations[i].hours *60;
-    const totalDuration = daysToMinutes + hoursToMinutes + seriesDurations[i].minutes;
+  for (let i = 0; i < seriesArray.length; i++) {
+    const daysToMinutes = seriesArray[i].days * 1440;
+    const hoursToMinutes = seriesArray[i].hours *60;
+    const totalDuration = daysToMinutes + hoursToMinutes + seriesArray[i].minutes;
     const percentageOfLife = (totalDuration/averageMinutes) *100;
     total += percentageOfLife;
-    console.log(`${seriesDurations[i].title} took ${percentageOfLife.toFixed(2)}% of my life`);  
+    console.log(`${seriesArray[i].title} took ${percentageOfLife.toFixed(2)}% of my life`);  
   }
   console.log(`In total that is ${total.toFixed(2)}% of my life`);
 };
 
-durationOfMyLife();
+durationOfMyLife(seriesDuration);
