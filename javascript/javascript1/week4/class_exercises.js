@@ -152,7 +152,7 @@ console.log(getCardInfo(4781321334789876)); // 'visa'
 //not working properly yet I will try to do it during the week
 
 const position = [["x", "o", " "], [" ", "o", " "], [" ", "o", "x"]];
-const firstLast = "*******";
+const firstLast = ["*", "*", "*","*", "*", "*",  "*"];
 
 function getRenderedGame(position) {
   console.log(firstLast);
@@ -172,6 +172,8 @@ function getRenderedGame(position) {
   console.log(firstLast);
 }
 console.log(getRenderedGame(position));
+
+//.join(',') + '\n'
 
 /*for (let i = 0; i < position.length; i++) {
   for (let j = 0; j < position[i].length; j++) {
