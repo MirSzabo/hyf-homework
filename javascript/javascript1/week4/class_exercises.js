@@ -157,17 +157,17 @@ const firstLast = "*******";
 function getRenderedGame(position) {
   console.log(firstLast);
   for (let i = 0; i < position.length; i++) {
-    function intersperse(arr, val) {
-      return arr.reduce(
-        (acc, next) => {
-          acc.push(next);
-          acc.push(val);
-          return acc;
+    function modifyGame(gameArray, val) {
+      return gameArray.reduce(
+        (first, next) => {
+          first.push(next);
+          first.push(val);
+          return first;
         },
         [val]
       );
     }
-    console.log(intersperse(position[i], "*"));
+    console.log(modifyGame(position[i], "*"));
   }
   console.log(firstLast);
 }
