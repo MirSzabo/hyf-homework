@@ -149,40 +149,45 @@ function getCardInfo(input) {
 console.log(getCardInfo(4781321334789876)); // 'visa'
 
 //Tic Tac Toe
-//not working yet I will try to do it during the week
-/*
+//not working properly yet I will try to do it during the week
+
 const position = [["x", "o", " "], [" ", "o", " "], [" ", "o", "x"]];
 const firstLast = "*******";
-const newPosition = position.map(value => value.map(item => ["*"].concat(item)+ "*"));
-console.log(newPosition); 
 
-console.log(newPosition[0].join(' '));
-
- function getRenderedGame (newPosition) {
-  for (let i = 0; i < position.length; i++) {  
-      return 
+function getRenderedGame(position) {
+  console.log(firstLast);
+  for (let i = 0; i < position.length; i++) {
+    function intersperse(arr, val) {
+      return arr.reduce(
+        (acc, next) => {
+          acc.push(next);
+          acc.push(val);
+          return acc;
+        },
+        [val]
+      );
+    }
+    console.log(intersperse(position[i], "*"));
   }
+  console.log(firstLast);
 }
-function intersperse(arr, val) {
-  return arr.reduce((acc, next) => {
-    acc.push(next);
-    acc.push(val);
-    return acc;
-  }, [val]);
+console.log(getRenderedGame(position));
+
+/*for (let i = 0; i < position.length; i++) {
+  for (let j = 0; j < position[i].length; j++) {
+    console.log(position[i][j]); 
+  }*/
+
+/*function getGameinfo(position) {
+
+  return {
+    winner,
+    loser,
+    hasEnded,
+    nextPlayer,
+  }
+
 }
-console.log(intersperse(['a', 'b', 'c'], 0));
-
-const renderedGame = getRenderedGame(position);
-console.log(renderedGame);
-
-function getGameinfo(position) {}
-
-const position = [["x", "o", " "], [" ", "o", " "], [" ", "o", "x"]];
 
 const gameInfo = getGameinfo(position);
-console.log(gameInfo);
-const position = [["x", "o", " "], [" ", " ", " "], [" ", "o", "x"]];
-
-const gameInfo = getGameinfo(position);
-console.log(gameInfo);
-*/
+console.log(gameInfo);*/
