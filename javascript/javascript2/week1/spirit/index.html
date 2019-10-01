@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="main.css">
+<title>Spirit animal generator</title>
+</head>
+<body>
+    <main> 
+         <h1>Spirit animal name generator</h1>
+         <p>In certain spiritual traditions or cultures, spirit animal refers to a spirit which helps guide or protect a person on a journey and whose characteristics that person shares or embodies.</p>
+        <!-- name input start --> 
+        <form>
+                <div>
+                <label for="user_name">
+                    <span>Write your name:</span></label>
+                <input type="text" id="userName">
+                </div>
+        <!-- name input end --> 
+        <!-- select option start --> 
+        <div>                     
+        <select id="select">
+            <option value="click">Click the button</option>
+            <option value="hover">Hover over the input</option>                              
+        </select>
+    </div>       
+    <!-- select option end -->
+    <!-- button start -->
+    <div>
+        <input id="button" type="button" value="Get spirit animal">
+    </div>
+    <!-- button end -->
+    <div>
+        <p>Your spirit animal is:</p>
+        <p><span id="animalName"></span></p>
+    </div>
+        </form>
+    </main>
+    <script src = "spirit_animal.js"></script>
+</body>
+</html>
