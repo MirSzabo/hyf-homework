@@ -9,7 +9,7 @@ const newHousePrices = housePrices.map(function modify(number) {
 
 //make a function that takes an array as parameter and returns the average of that parameter
 function calculateAverage(prices) {
-    const average = prices.reduce((a, b) => a + b) / prices.length;
+    const average = prices.reduce((total, currentValue) => total + currentValue) / prices.length;
     return average.toFixed(0); 
 }
 calculateAverage(housePrices);
@@ -17,7 +17,7 @@ calculateAverage(housePrices);
 //make a function that takes an array as parameter and returns the median of that parameter
 //sorting the array and picking the middle number. If it’s an even amount of numbers you take the two numbers in the middle and average them.
 function calculateMedian(prices) {
-    prices.sort((a, b) => a > b ? 1 : -1); // sort in ascending order
+    prices.sort((first, second) => first > second ? 1 : -1); // sort in ascending order
     const price = Math.floor(prices.length / 2); //3
     return prices.length % 2 ? prices[price] : (prices[price - 1] + prices[price]) / 2; //3rd
 }
