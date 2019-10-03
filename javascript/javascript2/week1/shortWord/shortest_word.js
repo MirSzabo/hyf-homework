@@ -1,7 +1,7 @@
 const danishWords = ['bil', 'plante', 'kaffe', 'bog', 'ø', 'planetarium'];
 
 function findShortestWord(words) {
-  const shortestWord = (a, b) => a.length <= b.length ? a : b;
+  const shortestWord = (first, second) => first.length <= second.length ? first : second;
   return words.reduce(shortestWord); 
 }
 findShortestWord(danishWords); // returns 'ø'
