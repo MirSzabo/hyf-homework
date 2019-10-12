@@ -65,58 +65,25 @@ console.log(
 );
 
 //Create an array of movies where a word in the title is duplicated.
-//I got arrays with repeating words but not whole titles of movies and I commented out some different ways I tried to solve it
+const duplicatedTitles = [];
+const regex = /[^A-Za-z0-9\s']/g;
 
-const regex = /[^a-z0-9]+/gi;
-function splitIntoWords() {
-  return movies.map(({ title }) =>
-    title
-      .toLowerCase()
-      .trim()
-      .split(regex)
-  );
-}
+  const titleSplit = movies
+    .map(movie =>
+      movie.title
+        .replace(regex, "")
+        .toLowerCase()
+        .split(" ")
+    )
+    .forEach(title =>
+      title.filter((item, index) =>
+        title.indexOf(item) != index
+          ? duplicatedTitles.push(title.join(" "))
+          : false
+      )
+    );
 
-function getDuplicate() {
-  const mapDuplicate = splitIntoWords().map(element =>
-    element.filter((item, index) => element.indexOf(item) !== index)
-  );
-  return mapDuplicate;
-}
-const arrayOfDuplicate = getDuplicate().filter(element => element.length !== 0);
-console.log(arrayOfDuplicate);
-
-/*function getArraysWithDuplicate() {
-  const duplicateWord = splitIntoWords().map(element => {
-    element.filter((item, index) => {
-      if (element.length === 0) {
-        return false;        
-      } else {
-        element.indexOf(item) !== index;
-        return duplicateWord;}
-    });
-  });
-}
-console.log(getArraysWithDuplicate());*/
-
-/*const arrayOfDuplicate = getArraysWithDuplicate().filter(
-  element => element.length !== 0
-);
-console.log(arrayOfDuplicate);*/
-
-/*
-const titlesInArray = movies.map(({ title }) => title.split(" "));
-console.log(titlesInArray);
-
-const countDuplicates = titlesInArray
-.map (title => title)
-.reduce((acc, title) => {
-  acc[title] = (acc[title] || 0) + 1 ;
-  return acc;
-} , {})
-
-console.log(countDuplicates);
-*/
+console.log(duplicatedTitles);
 
 //Find the word that is mostly duplicated using sort
 function sortByFrequency(movies) {
@@ -167,7 +134,7 @@ selectElement.addEventListener("change", event => {
   } else if (event.target.value === "moviesKey") {
     result.textContent = `There is ${moviesWithKeywords.length} movies with keywords Surfer, Alien or Benjamin.`;
   } else if (event.target.value === "dupWord") {
-    result.textContent = `in progress`;
+    result.textContent = `${duplicatedTitles}`;
   } else if (event.target.value === "mostDupWord") {
     result.textContent = `${keysSorted[0]}`;
   } else if (event.target.value === "rating") {
