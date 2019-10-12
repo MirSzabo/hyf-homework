@@ -7,6 +7,9 @@ function findShortestWord(words) {
 findShortestWord(danishWords); // returns 'ø'
 
 //DOM
-document.querySelector("button").addEventListener("click", function(){
-  document.getElementById("word").innerHTML = findShortestWord(danishWords);
+const shortestWord = findShortestWord(danishWords);
+const btn = document.querySelector("button")
+const output = document.getElementById("word")
+btn.addEventListener("click", function(){
+output.innerHTML = shortestWord;
 });
