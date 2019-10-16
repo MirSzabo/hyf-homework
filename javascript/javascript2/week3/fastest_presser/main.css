@@ -1,0 +1,149 @@
+body {
+  font-family: "Indie Flower", cursive;
+  background: #ee9ca7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #ffdde1,
+    #ee9ca7
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #ffdde1,
+    #ee9ca7
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+h1 {
+  margin: 0;
+}
+
+header {
+  list-style-type: none;
+  margin: 30px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#btn {
+  font-family: "Indie Flower", cursive;
+}
+#re_btn {
+  font-family: "Indie Flower", cursive;
+}
+.timer_button {
+  font-family: "Indie Flower", cursive;
+}
+.time_left {
+  font-size: 24px;
+}
+
+main {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  text-align: center;
+}
+.timer_controls {
+  margin: 15px;
+}
+.press {
+  height: 50vh;
+  width: 50vw;
+}
+#count_s {
+  font-size: 24px;
+}
+#count_l {
+  font-size: 24px;
+}
+
+#btn:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+.press:hover {
+  animation: shake 0.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}

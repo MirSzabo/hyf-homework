@@ -1,0 +1,55 @@
+<head>
+  <title>Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="main.css" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <header>
+    <h1>fastest presser</h1>
+    <div class="timer">
+      <div class="timer_controls">
+        <button data-time="5" class="timer_button">5 Seconds</button>
+        <button data-time="10" class="timer_button">10 Seconds</button>
+        <button data-time="15" class="timer_button">15 Seconds</button>
+        <button data-time="20" class="timer_button">20 Seconds</button>
+      </div>
+      <div>
+        <form name="customForm" id="custom">
+          <input
+            type="number"
+            min="1"
+            name="time"
+            id="time"
+            placeholder="Enter Seconds"
+          />
+        </form>
+      </div>
+      <div class="display">
+        <h1 class="displayTimeLeft"></h1>
+        <p class="displayEndTime"></p>
+      </div>
+      <button id="btn">Start Game!</button>
+      <button id="re_btn">Restart Game!</button>
+      <p class="time_left"></p>
+    </div>
+  </header>
+  <hr />
+  <main>
+    <div class="press">
+      <h2>Press S</h2>
+      <p id="count_s"></p>
+      <h3 id="winner_s"></h3>
+    </div>
+    <hr class="vertical" />
+    <div class="press">
+      <h2>Press L</h2>
+      <p id="count_l"></p>
+      <h3 id="winner_l"></h3>
+    </div>
+  </main>
+  <script src="fastest.js"></script>
+</body>
