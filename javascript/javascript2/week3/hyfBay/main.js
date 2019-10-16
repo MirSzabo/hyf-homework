@@ -4,9 +4,6 @@ const products = getAvailableProducts();
 
 console.log(products); // logs out
 
-const productsInCart = [];
-console.log(productsInCart);
-
 const newUl = document.querySelector("section.products > ul");
 //Optional ships to rendering
 function renderProducts(products) {
@@ -33,7 +30,6 @@ function renderProducts(products) {
         <div class="name">${product.name}</div>
         <div class="price">${product.price}</div>
     `;
-      productsInCart.push(product.price);//not working as expected
       productInput.value = "";
 
       //create the button- Delete
@@ -128,12 +124,11 @@ sort.addEventListener("change", sortProducts);
 
 sortProducts(products);
 
-//Price analytics- all the products not only in cart
-const price = products.reduce((total, product) => {
-  return total + (product.price)
-},0);
+//Price analytics
+const price = products.map(product => {
+  return product.price});
 serverResponse = () => {
-  return "Total price:";
+  return "Prices received";
 };
 
 function sendPricesToServer(priceArray, callback) {
