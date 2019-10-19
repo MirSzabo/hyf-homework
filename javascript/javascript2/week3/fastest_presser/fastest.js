@@ -41,10 +41,10 @@ reloadButton.addEventListener("click", function() {
 
 const countPress = event => {
   const keyValue = event.key;
-  if (clicked === true && keyValue === "l") {
+  if (clicked && keyValue === "l") {
     countL = parseInt(counterL.textContent || 0);
     counterL.textContent = countL + 1;
-  } else if (clicked === true && keyValue === "s") {
+  } else if (clicked && keyValue === "s") {
     countS = parseInt(counterS.textContent || 0);
     counterS.textContent = countS + 1;
   }
@@ -71,16 +71,22 @@ const getTheWinner = () => {
 const timeOut = () => setTimeout(getTheWinner, time * 1000);
 btn.addEventListener("click", timeOut);
 
-//I tried this optional part but it is not working correctly I will try to finish it during week 
-//my problem is with getTheWinner function which is invoked immediatelly or never 
-//also I would like to implement clearTimeout() function
-function startButtonTimer() {
+//Optional
+function startButtonTimer(event) {
+buttons.forEach(button => button.setAttribute("disabled", true));
+
+  event.preventDefault();
+
   clicked = true;
   winnerL.textContent = "";
   winnerS.textContent = "";
-  const time = (parseInt(this.dataset.time));
+  time = (parseInt(this.dataset.time));
   timerDisplay.innerHTML = time; 
   setCounter(time);
 }
 
 buttons.forEach(button => button.addEventListener("click", startButtonTimer));
+buttons.forEach(button => button.addEventListener("click", timeOut));
+reloadButton.addEventListener("click", function() {
+  document.location.reload(true);
+});
