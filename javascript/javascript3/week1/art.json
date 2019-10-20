@@ -1,0 +1,63 @@
+{ "pop-art-artists" : [
+{
+    "name": "ANDY WARHOL",
+    "nationality": "American",
+    "born": 1928,
+    "masterpieces": ["Marilyn Diptych", "Campbell’s Soup Cans", "Eight Elvises "]
+},
+{
+    "name": "ROY LICHTENSTEIN",
+    "nationality": "American",
+    "born": 1923,
+    "masterpieces": ["Whaam!", "Drowning Girl", "Oh, Jeff…I Love You, Too…But…"]
+},
+{
+    "name": "KEITH HARING",
+    "nationality": "American",
+    "born": 1958,
+    "masterpieces": ["Tuttomondo", "Crack is Wack", "Free South Africa"]
+},
+{
+    "name": "DAVID HOCKNEY",
+    "nationality": "British",
+    "born": 1965,
+    "masterpieces": ["A Bigger Splash", "Mr and Mrs Clark and Percy", "A Bigger Grand Canyon"]
+},
+{
+    "name": "YAYOI KUSAMA",
+    "nationality": "Japanese",
+    "born": 1929,
+    "masterpieces": ["Narcissus Garden", "Dots Obsession", "Repetitive Vision"]
+},
+{
+    "name": "CLAES OLDENBURG",
+    "nationality": "American",
+    "born": 1929,
+    "masterpieces": ["Lipstick on Caterpillar Tracks", "Clothespin", "Floor Cake"]
+},
+{
+    "name": "ROMERO BRITTO",
+    "nationality": "Brazilian",
+    "born": 1963,
+    "masterpiece": ["Mona Cat", "Britto Garden", "Martini Sunrise"]
+},
+{
+    "name": "RICHARD HAMILTON",
+    "nationality": "British",
+    "born": 1922,
+    "masterpieces": ["Interior II", "My Marilyn", "Floor Cake"]
+},
+{
+    "name": "JASPER JOHNS",
+    "nationality": "American",
+    "born": 1930,
+    "masterpieces": ["Flag", "Target with Four Faces", "Three Flags"]
+},
+{
+    "name": "PETER BLAKE",
+    "nationality": "British",
+    "born": 1932,
+    "masterpieces": ["Sgt Pepper’s Lonely Hearts", "On The Balcony", "Self-Portrait with Badges"]
+}
+]
+}
