@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css" />
+    <title>GiphyAPI</title>
+  </head>
+  <body>
+    <h1>Giphy Searcher</h1>
+    <form id="searchForm" name="searchForm">
+      <div class="form-group">
+        <label for="searchInput">Type a key word</label>
+        <input
+          type="text"
+          class="form-control"
+          name="searchQuery"
+          id="search_column"
+          aria-describedby="searchInputHelp"
+        />
+        <label for="searchInput">Number of Gifs</label>
+        <input
+          type="number"
+          min="1"
+          class="form-control"
+          name="searchQuery"
+          id="number_column"
+          aria-describedby="searchInputHelp"
+        />
+      </div>
+        <button type="submit" class="get_gifs">
+          <a href="#">Search for gif</a>
+        </button>
+    </form>
+    <div>
+      <ul id="gifs_output"></ul>
+    </div>
+    
+
+    <script src="giphy.js"></script>
+  </body>
+</html>
