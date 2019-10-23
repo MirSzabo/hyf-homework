@@ -1,10 +1,10 @@
 //key: bf110a4174b6a1b0710d8a1165f487ca
 
-const typedCity = document.getElementById("city");
+const cityInput = document.getElementById("city");
 const getWeatherButton = document.getElementById("get-weather");
 
 getWeatherButton.addEventListener("click", getWeatherInfo);
-typedCity.addEventListener("keyup", enterPressed);
+cityInput.addEventListener("keyup", enterPressed);
 
 function enterPressed(event) {
   if (event.key === "Enter") {
@@ -14,21 +14,21 @@ function enterPressed(event) {
 
 function getWeatherInfo() {
   const api = "https://api.openweathermap.org/data/2.5/weather?q=";
-  const cityName = typedCity.value.toLowerCase();
+  const cityName = cityInput.value.toLowerCase();
   const key = "&appid=bf110a4174b6a1b0710d8a1165f487ca";
   const units = "&units=metric";
   const url = api + cityName + key + units;
   console.log(url);
 
-  if (typedCity.value === "") {
-    getWeatherForYourPosition();
+  if (cityInput.value === "") {
+    getWeatherForCurrentLocation();
   } else {
-    fetchApi(url);
+    fetchData(url);
   }
-  typedCity.value = "";
+  cityInput.value = "";
 }
 
-function fetchApi(url) {
+function fetchData(url) {
   fetch(url)
     .then(result => {
       //waiting for the result from the server
@@ -66,20 +66,16 @@ function showWeatherInfo(data) {
   const dateSunrise = new Date(data.sys.sunrise * 1000);
   const dateSunset = new Date(data.sys.sunset * 1000);
 
-  weatherInfo.innerText =
-    resultDescription.charAt(0).toUpperCase() + resultDescription.slice(1);
+  weatherInfo.innerText = toTitleCase(resultDescription);
+
   temperature.innerHTML = Math.floor(data.main.temp) + "&#176;";
   windSpeed.innerHTML = "Wind speed: " + Math.floor(data.wind.speed) + " m/s";
   cityName.innerHTML = data.name;
   humidity.innerHTML = "Humidity: " + data.main.humidity + "%";
-  sunrise.innerHTML =
-    "Sunrise " +
-    dateSunrise.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-  sunset.innerHTML =
-    "Sunset " +
-    dateSunset.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+  sunrise.innerHTML = "Sunrise " + formatTime(dateSunrise);
+  sunset.innerHTML = "Sunset " + formatTime(dateSunset);
 
-  weatherInfoVisisbility();
+  makeWeatherInfoVisible();
 }
 
 function changeBackground(data) {
@@ -106,32 +102,29 @@ function changeBackground(data) {
   }
 }
 
-function weatherInfoVisisbility() {
+function makeWeatherInfoVisible() {
   const weatherContainer = document.querySelector(".weather-container");
   weatherContainer.style.visibility = "visible";
 }
 
 //your position
 const buttonGetPosition = document.getElementById("get-position");
-buttonGetPosition.addEventListener("click", getWeatherForYourPosition);
+buttonGetPosition.addEventListener("click", getWeatherForCurrentLocation);
 
-function getWeatherForYourPosition() {
-  watchLocation().then(array => {
-    const lat = array[0];
-    const lon = array[1];
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=bf110a4174b6a1b0710d8a1165f487ca&units=metric`;
-    fetchApi(url);
+function getWeatherForCurrentLocation() {
+  getCurrentLocation().then(coords => {
+    const latitude = coords.latitude;
+    const longitude = coords.longitude;
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=bf110a4174b6a1b0710d8a1165f487ca&units=metric`;
+    fetchData(url);
   });
 }
 
-function watchLocation() {
-  return new Promise(function(resolve) {
+function getCurrentLocation() {
+  return new Promise(resolve => {
     navigator.geolocation.getCurrentPosition(function(position) {
-      const geoArray = [];
-      geoArray[0] = position.coords.latitude;
-      geoArray[1] = position.coords.longitude;
-
-      resolve(geoArray);
+      const coords = {latitude: position.coords.latitude, longitude: position.coords.longitude};
+      resolve(coords);
     });
   });
 }
@@ -144,6 +137,21 @@ function getWeatherForSavedPosition() {
 
   if (cityFromLocalStorage) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityFromLocalStorage}&appid=bf110a4174b6a1b0710d8a1165f487ca&units=metric`;
-    fetchApi(url);
+    fetchData(url);
   }
+}
+
+//utility functions
+function toTitleCase(string) {
+  return string
+    .toLowerCase()
+    .split(" ")
+    .map(function(word) {
+      return word.replace(word[0], word[0].toUpperCase());
+    })
+    .join(" ");
+}
+
+function formatTime(time) {
+  return time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 }
