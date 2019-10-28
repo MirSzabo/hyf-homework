@@ -23,17 +23,21 @@ console.log(
 );
 
 //extra key called tag based on the rating
-const movieDatabaseWithTag = movies.map(movie => {
+let movieDatabaseWithTag = JSON.parse(JSON.stringify(movies))
+movieDatabaseWithTag = movies.map(movie => {
+  let movieTag;
   if (movie.rating >= 7) {
-    movie.tag = "Good";
+    movieTag = "Good";
   } else if (movie.rating >= 4) {
-    movie.tag = "Average";
+    movieTag = "Average";
   } else {
-    movie.tag = "Bad";
+    movieTag = "Bad";
   }
-  return movies;
+  return { ...movie, tag: movieTag };
 });
-console.log(movieDatabaseWithTag);
+
+console.log(JSON.stringify(movieDatabaseWithTag));
+console.log(JSON.stringify(movies));
 
 //Using chaining, filter array to contain the movies rated higher than 6. Now map the movies array to only the rating of the movies.
 const highRatedMovies = movies
@@ -68,20 +72,20 @@ console.log(
 const duplicatedTitles = [];
 const regex = /[^A-Za-z0-9\s']/g;
 
-  const titleSplit = movies
-    .map(movie =>
-      movie.title
-        .replace(regex, "")
-        .toLowerCase()
-        .split(" ")
+const titleSplit = movies
+  .map(movie =>
+    movie.title
+      .replace(regex, "")
+      .toLowerCase()
+      .split(" ")
+  )
+  .forEach(title =>
+    title.filter((item, index) =>
+    title.indexOf(item) != index
+        ? duplicatedTitles.push(title.join(" "))
+        : false
     )
-    .forEach(title =>
-      title.filter((item, index) =>
-        title.indexOf(item) != index
-          ? duplicatedTitles.push(title.join(" "))
-          : false
-      )
-    );
+  );
 
 console.log(duplicatedTitles);
 
