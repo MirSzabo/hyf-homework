@@ -5,14 +5,8 @@ fetch(
   .then(data => {
     const badMovies = data.filter(data => data.rating < 4);
     console.log(badMovies);
-    return badMovies;
-  })
-  .then(badMovies => {
     const badMoviesSince2000 = badMovies.filter(data => data.year > 2000);
     console.log(badMoviesSince2000);
-    return badMoviesSince2000;
-  })
-  .then(badMoviesSince2000 => {
     const badMoviesSince2000Titles = badMoviesSince2000.map(data => data.title);
     console.log(badMoviesSince2000Titles);
   });
