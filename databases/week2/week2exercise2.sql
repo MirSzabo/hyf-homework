@@ -6,8 +6,8 @@ USE school;
 CREATE TABLE `class` (
 `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 `name` varchar(255) NOT NULL,
-`begins (date)` DATETIME NOT NULL DEFAULT NOW(),
-`ends (date)` DATETIME NOT NULL DEFAULT NOW(),
+`begins` DATETIME NOT NULL DEFAULT NOW(),
+`ends` DATETIME NOT NULL DEFAULT NOW(),
 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -26,4 +26,4 @@ ALTER TABLE student ADD INDEX (name);
 
 -- Add a new column to the class table named status which can only have the following values: not-started, ongoing, finished (hint: enumerations).
 ALTER TABLE class 
-ADD COLUMN status ENUM("not-started", "ongoing", "finished") NOT NULL;
+ADD COLUMN status ENUM('not-started', 'ongoing', 'finished') NOT NULL;
