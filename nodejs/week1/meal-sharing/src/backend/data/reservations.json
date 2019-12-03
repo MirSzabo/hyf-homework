@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Benjamin Hughes",
+    "email": "benjamin@hughes.dk",
+    "mealId": 1
+  },
+  {
+    "id": 2,
+    "name": "Tom Jones",
+    "email": "tom@jones.dk",
+    "mealId": 2
+  },
+  {
+    "id": 3,
+    "name": "Will Smith",
+    "email": "will@smith.dk",
+    "mealId": 2
+  },
+  {
+    "id": 4,
+    "name": "Anna Miller",
+    "email": "anna@miller.dk",
+    "mealId": 3
+  },
+  {
+    "id": 5,
+    "name": "Peter Novak",
+    "email": "peter@novak.dk",
+    "mealId": 4
+  },
+  {
+    "id": 6,
+    "name": "Jacky Black",
+    "email": "jacky@black.dk",
+    "mealId": 3
+  }
+]
