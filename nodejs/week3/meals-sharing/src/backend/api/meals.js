@@ -1,98 +1,163 @@
 const express = require("express");
+const pool = require("./../database");
 const bodyParser = require("body-parser");
-const meals = require("../data/meals");
-const route = express.Router();
+const app = express();
+const router = express.Router();
+router.use(bodyParser.json());
 
-route.use(bodyParser.json());
+//Body parser middleware
+router.use(bodyParser.urlencoded({ extended: false }));
+router.use(bodyParser.json());
 
-// Respond with the json for all meals
-route.get("/meals", (req, res) => {
-  res.json(meals);
-});
-
-//Respond with the json for the meal with the corresponding id
-route.get("/meals/:id", (req, res) => {
-  const { id } = req.params;
-  const isFound = meals.some(meal => meal.id === parseInt(id));
-  const isNumber = Number.isInteger(parseInt(id));
-  if (isFound && isNumber) {
-    res.send(
-      meals.filter(meal => {
-        return meal.id === parseInt(id);
-      })
-    );
-  } else {
-    res.status(400).json({ msg: `No meal with id of ${id}` });
-  }
-});
-
-//Get meals that has a price smaller than maxPrice
-//http://localhost:3000/api/meals?maxPrice=90
-route.use("/api/meals", (req, res) => {
+router.get("/", (req, res) => {
   console.log(req.query);
   const { maxPrice } = req.query;
-  if (!maxPrice) {
-    res.status(400).json({ msg: "Invalid query parameter" });
-  }
-
-  const maxPriceMeals = meals.filter(meal => {
-    return meal.price < Number(maxPrice);
-  });
-
-  res.send(maxPriceMeals);
-});
-
-//Get meals that partially match a title
-//http://localhost:3000/api/meals_title?title="indian"
-route.use("/api/meals_title", (req, res) => {
-  console.log(req.query);
+  const { availableReservations } = req.query;
   const { title } = req.query;
-
-  if (!title) {
-    res.status(400).json({ msg: "Invalid query parameter" });
-  }
-
-  const titleMeals = meals.filter(meal => {
-    const mealTitle = meal.title.toLowerCase().trim();
+  const { createdAfter } = req.query;
+  const { limit } = req.query;
+  //Get meals that has a price smaller than maxPrice
+  //http://localhost:3000/api/meals?maxPrice=90
+  if (maxPrice) {
+    pool.query(
+      `SELECT * FROM meal WHERE price <= ${maxPrice}`,
+      (error, results, fields) => {
+        if (error) {
+          return res.send(error);
+        }
+        res.json(results);
+      }
+    );
+    //Get meals that still has available reservations
+    //http://localhost:3000/api/meals?availableReservations=true
+  } else if (availableReservations) {
+    pool.query(`SELECT meal.id, meal.title, (meal.max_reservations-reservation.number_of_guests) AS available_reservations, reservation.number_of_guests FROM Meal
+    JOIN reservation
+    ON meal.id = reservation.meal_id
+    WHERE number_of_guests < max_reservations;`, (error, results, fields) => {
+      if (error) {
+        return res.send(error);
+      }
+      res.json(results);
+    });
+    //Get meals that partially match a title
+    //http://localhost:3000/api/meals?title="pizz"
+  } else if (title) {
     const titleQueryModified = title
       .toLowerCase()
       .replace(/"/g, "")
       .trim();
-    if (mealTitle.includes(titleQueryModified)) {
-      return meal;
+    pool.query(
+      `SELECT * FROM meal WHERE title LIKE '%${titleQueryModified}%'`,
+      (error, results, fields) => {
+        if (error) {
+          return res.send(error);
+        }
+        res.json(results);
+      }
+    );
+    //Get meals that has been created after the date
+    //http://localhost:3000/api/meals?createdAfter=2019-12-08
+  } else if (createdAfter) {
+    pool.query(
+      `SELECT * FROM meal WHERE created_date >= '${createdAfter}'`,
+      (error, results, fields) => {
+        if (error) {
+          return res.send(error);
+        }
+        res.json(results);
+      }
+    );
+    //Only specific number of meals
+    //http://localhost:3000/api/meals?limit=2
+  } else if (limit) {
+    const limitNumber = parseInt(limit.trim());
+    pool.query(
+      `SELECT * FROM meal LIMIT ${limitNumber}`,
+      (error, results, fields) => {
+        if (error) {
+          return res.send(error);
+        }
+        res.json(results);
+      }
+    );
+  } else {
+    return res.status(400).json({ msg: "Invalid query parameter" });
+  }
+});
+
+// api/meals/	GET	Returns all meals	GET api/meals/
+router.get("/", (req, res) => {
+  pool.query("SELECT * FROM meal", (error, results, fields) => {
+    if (error) {
+      return res.send(error);
     }
+    res.json(results);
   });
-  res.send(titleMeals);
 });
 
-//Get meals that has been created after the date
-//http://localhost:3000/api/meals_date?createdAfter=2019-12-08
-route.use("/api/meals_date", (req, res) => {
-  console.log(req.query);
-  const { createdAfter } = req.query;
-
-  if (!createdAfter) {
-    res.status(400).json({ msg: "Invalid query parameter" });
-  }
-
-  const createdAfterMeals = meals.filter(meal => {
-    return new Date(meal.createdAt) > new Date(createdAfter);
+//api/meals/	POST	Adds a new meal	POST api/meals/
+router.post("/", (req, res) => {
+  const meal = req.body;
+  console.log("meal:", meal);
+  pool.query("INSERT into meal SET ?", meal, (error, results, fields) => {
+    if (error) {
+      return res.send(error);
+    }
+    res.json(results);
   });
-  res.send(createdAfterMeals);
 });
 
-//Only specific number of meals
-//http://localhost:3000/api/meals_limit?limit=2
-route.use("/api/meals_limit", (req, res) => {
-  console.log(req.query);
-  const { limit } = req.query;
-
-  if (!limit) {
-    res.status(400).json({ msg: "Invalid query parameter" });
-  }
-
-  const limitMeals = meals.slice(0, limit);
-  res.send(limitMeals);
+//api/meals/{id}	GET	Returns meal by id	GET api/meals/2
+router.get("/:id", (req, res) => {
+  pool.query(
+    "SELECT * FROM meal WHERE id=?",
+    [req.params.id],
+    (error, results, fields) => {
+      if (error) {
+        return res.send(error);
+      }
+      res.json(results);
+    }
+  );
 });
 
-module.exports = route;
+//api/meals/{id}	PUT	Updates the meal by id	PUT api/meals/2
+router.put("/:id", (req, res) => {
+  pool.query(
+    "UPDATE meal SET `title` = ?, `description` = ?, `location` = ?, `when` = ?, `max_reservations` = ?, `price` = ?, `created_date` = ? WHERE `id`= ?",
+    [
+      req.body.title,
+      req.body.description,
+      req.body.location,
+      req.body.when,
+      req.body.max_reservations,
+      req.body.price,
+      req.body.created_date,
+      req.body.id
+    ],
+    (error, results, fields) => {
+      if (error) {
+        return res.send(error);
+      }
+      res.send("Meal has been updated!");
+    }
+  );
+});
+
+//api/meals/{id}	DELETE	Deletes the meal by id	DELETE meals/2
+router.delete("/:id", (req, res) => {
+  console.log(req.body);
+  pool.query(
+    "DELETE FROM `meal` WHERE `id`=?",
+    [req.body.id],
+    (error, results, fields) => {
+      if (error) {
+        return res.send(error);
+      }
+      res.end("Meal has been deleted!");
+    }
+  );
+});
+
+module.exports = router;

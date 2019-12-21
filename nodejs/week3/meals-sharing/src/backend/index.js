@@ -7,7 +7,7 @@ const mealsRouter = require("./api/meals");//link the meal file
 const reservationsRouter = require("./api/reservations.js");
 const reviewsRouter = require("./api/reviews.js");
 
-const port = process.env.PORT || 5000; //define the port where we will run the server
+const port = process.env.PORT || 3000; //define the port where we will run the server
 // For week4 no need to look into this!
 /* const path = require("path"); */
 /* // Serve the built client html
