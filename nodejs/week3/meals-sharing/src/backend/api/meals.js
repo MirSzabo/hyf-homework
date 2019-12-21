@@ -1,78 +1,98 @@
 const express = require("express");
-const pool = require("./../database");
 const bodyParser = require("body-parser");
-const app = express();
-const router = express.Router();
-router.use (bodyParser.json());
+const meals = require("../data/meals");
+const route = express.Router();
 
-//Body parser middleware
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
+route.use(bodyParser.json());
 
-// api/meals/	GET	Returns all meals	GET api/meals/
-router.get("/", (req, res) => {
-  pool.query("SELECT * FROM meal", (error, results, fields) => {
-   // res.json({});
-    if (error) {
-      return res.send(error);
-    }
-    res.json(results);
+// Respond with the json for all meals
+route.get("/meals", (req, res) => {
+  res.json(meals);
+});
+
+//Respond with the json for the meal with the corresponding id
+route.get("/meals/:id", (req, res) => {
+  const { id } = req.params;
+  const isFound = meals.some(meal => meal.id === parseInt(id));
+  const isNumber = Number.isInteger(parseInt(id));
+  if (isFound && isNumber) {
+    res.send(
+      meals.filter(meal => {
+        return meal.id === parseInt(id);
+      })
+    );
+  } else {
+    res.status(400).json({ msg: `No meal with id of ${id}` });
+  }
+});
+
+//Get meals that has a price smaller than maxPrice
+//http://localhost:3000/api/meals?maxPrice=90
+route.use("/api/meals", (req, res) => {
+  console.log(req.query);
+  const { maxPrice } = req.query;
+  if (!maxPrice) {
+    res.status(400).json({ msg: "Invalid query parameter" });
+  }
+
+  const maxPriceMeals = meals.filter(meal => {
+    return meal.price < Number(maxPrice);
   });
+
+  res.send(maxPriceMeals);
 });
-/*
-//api/meals/	POST	Adds a new meal	POST api/meals/
-router.post("/", (req, res) => {
-  const meal = req.body;
-  console.log("meal:", meal);
-  pool.query("INSERT into meal SET ?", meal, (error, results, fields) => {
-    if (error) {
-      return res.send(error);
+
+//Get meals that partially match a title
+//http://localhost:3000/api/meals_title?title="indian"
+route.use("/api/meals_title", (req, res) => {
+  console.log(req.query);
+  const { title } = req.query;
+
+  if (!title) {
+    res.status(400).json({ msg: "Invalid query parameter" });
+  }
+
+  const titleMeals = meals.filter(meal => {
+    const mealTitle = meal.title.toLowerCase().trim();
+    const titleQueryModified = title
+      .toLowerCase()
+      .replace(/"/g, "")
+      .trim();
+    if (mealTitle.includes(titleQueryModified)) {
+      return meal;
     }
-    res.json(results);
   });
+  res.send(titleMeals);
 });
 
-//api/meals/{id}	GET	Returns meal by id	GET api/meals/2
-router.get("/meals/:id", (req, res) => {
-  pool.query(
-    "SELECT * FROM meal WHERE id=?",
-    [req.params.id],
-    (error, results, fields) => {
-      if (error) {
-        return res.send(error);
-      }
-      res.json(results);
-    }
-  );
+//Get meals that has been created after the date
+//http://localhost:3000/api/meals_date?createdAfter=2019-12-08
+route.use("/api/meals_date", (req, res) => {
+  console.log(req.query);
+  const { createdAfter } = req.query;
+
+  if (!createdAfter) {
+    res.status(400).json({ msg: "Invalid query parameter" });
+  }
+
+  const createdAfterMeals = meals.filter(meal => {
+    return new Date(meal.createdAt) > new Date(createdAfter);
+  });
+  res.send(createdAfterMeals);
 });
 
-//api/meals/{id}	PUT	Updates the meal by id	PUT api/meals/2
-router.put("/", (req, res) => {
-  pool.query(
-    "UPDATE `meal` SET `title`=? WHERE `id`=?",
-    [req.body.employee_name, req.body.id],
-    (error, results, fields) => {
-      if (error) {
-        return res.send(error);
-      }
-      res.json(results);
-    }
-  );
-});*/
+//Only specific number of meals
+//http://localhost:3000/api/meals_limit?limit=2
+route.use("/api/meals_limit", (req, res) => {
+  console.log(req.query);
+  const { limit } = req.query;
 
-//api/meals/{id}	DELETE	Deletes the meal by id	DELETE meals/2*/
-/*router.delete("/", (req, res) => {
-  console.log(req.body);
-  pool.query(
-    "DELETE FROM `meal` WHERE `id`=?",
-    [req.body.id],
-    (error, results, fields) => {
-      if (error) {
-        return res.send(error);
-      }
-      res.end("Meal has been deleted!");
-    }
-  );
-});*/
+  if (!limit) {
+    res.status(400).json({ msg: "Invalid query parameter" });
+  }
 
-module.exports = router;
+  const limitMeals = meals.slice(0, limit);
+  res.send(limitMeals);
+});
+
+module.exports = route;
