@@ -16,23 +16,26 @@ function TodoItem (props) {
   );
 }
 
-function TodoList (props) {
-    const { todos } = props;
+function TodoList(props) {
+  const { todos } = props;
+  const list = todos.map(todo => {
     return (
-      <ul>
-        {todos.map(todo => {
-          return (
-            <TodoItem
-              key={todo.description}
-              description={todo.description}
-              deadline={todo.deadline}
-            />
-          );
-        })}
-      </ul>
+      <TodoItem
+        key={todo.description}
+        description={todo.description}
+        deadline={todo.deadline}
+      />
     );
+  });
+  return <div>{list}</div>;
 }
 
+function TodoItem(props) {
+  return (<li>
+    {props.description} {props.deadline}
+  </li>)
+}
+          
 function App () {
     return (
       <div className="todo-list">
