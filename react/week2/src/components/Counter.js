@@ -5,10 +5,13 @@ function Counter() {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      setCount(prev => prev + 1);
-    }, 1000);
-  });
+    const timer = setTimeout(() => {
+            setCount(count => count + 1);
+        }, 1000);    
+    return (() => {
+        clearTimeout(timer)
+        }); 
+});
 
   if (count === 1) {
     return (
