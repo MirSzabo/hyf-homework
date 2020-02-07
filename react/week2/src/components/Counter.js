@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 function Counter() {
-  console.log("called")
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -11,8 +10,7 @@ function Counter() {
     return (() => {
         clearTimeout(timer)
         }); 
-});
-
+}, [count]);
   if (count === 1) {
     return (
       <div>
