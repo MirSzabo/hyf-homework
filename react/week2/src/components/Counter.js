@@ -10,7 +10,7 @@ function Counter() {
     return (() => {
         clearTimeout(timer)
         }); 
-}, [count]);
+});
   if (count === 1) {
     return (
       <div>
