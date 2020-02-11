@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EditTodoForm from "./EditTodoForm";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 function TodoItem({
   id,
@@ -40,6 +40,6 @@ function TodoItem({
 
 TodoItem.propTypes = {
   description: PropTypes.string
-}
+};
 
 export default TodoItem;

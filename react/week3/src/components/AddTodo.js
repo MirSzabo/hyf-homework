@@ -1,10 +1,12 @@
 import React, { useState } from "react";
-import DatePick from "./DatePick";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-function AddTodo({addTodo}) {
+function AddTodo({ addTodo }) {
   const [value, setValue] = useState("");
   const [deadline, setDeadline] = useState("");
-  
+  const [date, setDate] = useState("");
+
   return (
     <div>
       <form
@@ -18,13 +20,20 @@ function AddTodo({addTodo}) {
           Todo description
           <input
             value={value}
-            onChange={e => setValue(e.target.value)}
+            onChange={event => setValue(event.target.value)}
             type="text"
           ></input>
         </div>
         <div>
           Deadline
-          <DatePick />
+          <DatePicker
+            selected={date}
+            minDate={new Date()}
+            onChange={event => {
+              setDate(event);
+              setDeadline(event.toLocaleDateString());
+            }}
+          />
         </div>
       </form>
       <button onClick={() => addTodo(value, deadline)}>Add todo</button>
