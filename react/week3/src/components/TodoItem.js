@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import EditTodoForm from "./EditTodoForm";
 import PropTypes from "prop-types";
-
 function TodoItem({
   id,
   description,
@@ -12,32 +11,39 @@ function TodoItem({
   toggleTodo
 }) {
   const [state, editState] = useState(false);
-  return (
-    <li style={{ textDecoration: completed ? "Line-through" : "none" }}>
-      {state ? (
-        <EditTodoForm
+
+  const toggleEditState = () => editState(prev => !prev);
+  
+  const editFormShow = () => {
+    return (<EditTodoForm
           editTodo={editTodo}
           id={id}
-          description={description}
           editState={editState}
-        />
-      ) : (
-        <div>
-          {description} {deadline}
-          <input
-            type="checkbox"
-            name="completed"
-            value={completed}
-            onChange={() => toggleTodo(id)}
-          />
-          <button onClick={() => removeTodo(id)}>Delete</button>
-          <button onClick={editState}>Edit</button>
-        </div>
-      )}
+          description={description}
+          toggleEditState={toggleEditState}
+      />)
+  }
+
+  const editFormHide = () => {
+    return (<div>
+      {description} {deadline}
+      <input
+        type="checkbox"
+        name="completed"
+        value={completed}
+        onChange={() => toggleTodo(id)}
+      />
+      <button onClick={() => removeTodo(id)}>Delete</button>
+      <button onClick={toggleEditState}>Edit</button>
+    </div>)
+  }
+
+  return (
+    <li style={{ textDecoration: completed ? "Line-through" : "none" }}>
+      {state ? editFormShow() : editFormHide() }
     </li>
   );
 }
-
 TodoItem.propTypes = {
   description: PropTypes.string
 };
