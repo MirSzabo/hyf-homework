@@ -9,41 +9,36 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
-router.get("/", (req, res) => {
-  console.log(req.query);
-  const { maxPrice } = req.query;
-  const { availableReservations } = req.query;
-  const { title } = req.query;
-  const { createdAfter } = req.query;
-  const { limit } = req.query;
-  //Get meals that has a price smaller than maxPrice
-  //http://localhost:3000/api/meals?maxPrice=90
-  if (maxPrice) {
-    pool.query(
-      `SELECT * FROM meal WHERE price <= ${maxPrice}`,
-      (error, results, fields) => {
-        if (error) {
-          return res.send(error);
-        }
-        res.json(results);
-      }
-    );
-    //Get meals that still has available reservations
-    //http://localhost:3000/api/meals?availableReservations=true
-  } else if (availableReservations) {
-    pool.query(`SELECT meal.id, meal.title, (meal.max_reservations-reservation.number_of_guests) AS available_reservations, reservation.number_of_guests FROM Meal
-    JOIN reservation
-    ON meal.id = reservation.meal_id
-    WHERE number_of_guests < max_reservations;`, (error, results, fields) => {
+//helpers functions
+function respondWithMaxPriceLimit(maxPrice) {
+  pool.query(
+    `SELECT * FROM meal WHERE price <= ${maxPrice}`,
+    (error, results, fields) => {
       if (error) {
         return res.send(error);
       }
       res.json(results);
-    });
-    //Get meals that partially match a title
-    //http://localhost:3000/api/meals?title="pizz"
-  } else if (title) {
-    const titleQueryModified = title
+    }
+  );
+}
+
+function respondWithAvaliableReservations() {
+  pool.query(
+    `SELECT meal.id, meal.title, (meal.max_reservations-reservation.number_of_guests) AS available_reservations, reservation.number_of_guests FROM Meal
+  JOIN reservation
+  ON meal.id = reservation.meal_id
+  WHERE number_of_guests < max_reservations;`,
+    (error, results, fields) => {
+      if (error) {
+        return res.send(error);
+      }
+      res.json(results);
+    }
+  );
+}
+
+function respondWithTitleMatch(title) {
+  const titleQueryModified = title
       .toLowerCase()
       .replace(/"/g, "")
       .trim();
@@ -56,22 +51,22 @@ router.get("/", (req, res) => {
         res.json(results);
       }
     );
-    //Get meals that has been created after the date
-    //http://localhost:3000/api/meals?createdAfter=2019-12-08
-  } else if (createdAfter) {
-    pool.query(
-      `SELECT * FROM meal WHERE created_date >= '${createdAfter}'`,
-      (error, results, fields) => {
-        if (error) {
-          return res.send(error);
-        }
-        res.json(results);
+}
+
+function respondWithCreatedAfter(createdAfter) {
+  pool.query(
+    `SELECT * FROM meal WHERE created_date >= '${createdAfter}'`,
+    (error, results, fields) => {
+      if (error) {
+        return res.send(error);
       }
-    );
-    //Only specific number of meals
-    //http://localhost:3000/api/meals?limit=2
-  } else if (limit) {
-    const limitNumber = parseInt(limit.trim());
+      res.json(results);
+    }
+  );
+}
+
+function respondWithLimitMeals(limit) {
+  const limitNumber = parseInt(limit.trim());
     pool.query(
       `SELECT * FROM meal LIMIT ${limitNumber}`,
       (error, results, fields) => {
@@ -81,6 +76,37 @@ router.get("/", (req, res) => {
         res.json(results);
       }
     );
+}
+
+
+router.get("/", (req, res) => {
+  const {
+    maxPrice,
+    availableReservations,
+    title,
+    createdAfter,
+    limit
+  } = req.query;
+  //Get meals that has a price smaller than maxPrice
+  //http://localhost:3000/api/meals?maxPrice=90
+  if (maxPrice) {
+    respondWithMaxPriceLimit(maxPrice);
+    //Get meals that still has available reservations
+    //http://localhost:3000/api/meals?availableReservations=true
+  } else if (availableReservations) {
+    respondWithAvaliableReservations();
+    //Get meals that partially match a title
+    //http://localhost:3000/api/meals?title="pizz"
+  } else if (title) {
+    respondWithTitleMatch(title);
+    //Get meals that has been created after the date
+    //http://localhost:3000/api/meals?createdAfter=2019-12-08
+  } else if (createdAfter) {
+    respondWithCreatedAfter(createdAfter);
+    //Only specific number of meals
+    //http://localhost:3000/api/meals?limit=2
+  } else if (limit) {
+    respondWithLimitMeals(limit);
   } else {
     return res.status(400).json({ msg: "Invalid query parameter" });
   }

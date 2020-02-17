@@ -4,6 +4,7 @@ const router = express.Router();
 const pool = require("./../database");
 
 //api/reviews/	GET	Returns all reviews	GET api/reviews/
+
 router.get("/", (req, res) => {
     pool.query("SELECT * FROM review", (error, results, fields) => {
       if (error) {
