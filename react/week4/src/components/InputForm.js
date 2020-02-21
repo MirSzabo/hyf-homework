@@ -6,17 +6,15 @@ const InputForm = () => {
   return (
     <>
       <form>
-        <label>
-          User name:
           <input
             type="text"
             value={input}
+            placeholder="User name"
             onChange={event => {
               setInput(event.target.value);
               setLoading(true);
             }}
           />
-        </label>
       </form>
     </>
   );

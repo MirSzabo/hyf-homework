@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import InputForm from "./components/InputForm";
 import GetUsersData from "./components/GetUsersData";
+import MyRepos from "./components/MyRepos";
 import "./App.css";
 
 export const userListContext = createContext();
@@ -33,6 +34,7 @@ function App() {
           <InputForm />
           <GetUsersData />
         </userListContext.Provider>
+        <MyRepos />
       </div>
     </div>
   );
