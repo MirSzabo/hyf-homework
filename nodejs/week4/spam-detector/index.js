@@ -11,16 +11,17 @@ class SpamDetector {
   isSpam(email) {
     const subject = email.subject;
     const body = email.body;
-    const string = subject + body;
+    const contentToCheck = subject + body;
 
     //more than 60% uppercase characters
     let uppercaseCharacters = 0;
     let uppercaseCharactersArray = [];
-    let numberOfCharacters = subject.length;
-    const subjectWithoutSpaces = subject.split(" ").join();
+    const contentWithoutSpaces = contentToCheck.split(" ").join("");
+    let numberOfCharacters = subjectWithoutSpaces.length;
+
     for (let i = 0; i < numberOfCharacters; i++) {
-      if (subjectWithoutSpaces.charAt(i) === subjectWithoutSpaces.charAt(i).toUpperCase()) {
-        uppercaseCharactersArray.push(subjectWithoutSpaces.charAt(i));
+      if (contentWithoutSpaces.charAt(i) === contentWithoutSpaces.charAt(i).toUpperCase()) {
+        uppercaseCharactersArray.push(contentWithoutSpaces.charAt(i));
         uppercaseCharacters = (uppercaseCharactersArray.length/numberOfCharacters)*100;
       }
     }
@@ -31,12 +32,12 @@ class SpamDetector {
     //contain spam words
     if (
       spamWords.some(word => {
-        return string.indexOf(word) >= 0;
+        return contentToCheck.indexOf(word) >= 0;
       })
     ) {
       return true;
     }
-    //subject only contains the string "Hello"
+    //subject only contains the contentToCheck "Hello"
     if (subject.trim().toLowerCase() === "hello") {
       return true;
     }
