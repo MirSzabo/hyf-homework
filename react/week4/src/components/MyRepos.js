@@ -6,7 +6,8 @@ function MyRepos() {
     const MY_URL = `https://api.github.com/users/MirSzabo/repos`;
     (async () => {
       try {
-        const myData = await fetch(`${MY_URL}`);
+        const myData = await fetch(MY_URL);
+
         const myRepo = await myData.json();
         setRepo(myRepo);
       } catch (error) {
