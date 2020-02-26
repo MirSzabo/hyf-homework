@@ -14,7 +14,8 @@ function MyRepos() {
         console.log(error);
       }
     })();
-  }, [setRepo]);
+  }, []);
+
 
   return (
     <div>
