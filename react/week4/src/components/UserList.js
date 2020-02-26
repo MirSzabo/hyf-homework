@@ -19,7 +19,8 @@ const UserList = () => {
                 width="42"
               ></img>
               <a href={list.html_url} target="_">
-                <li key={list.id}>{list.login}</li>
+                <div>{list.login}</div>
+
               </a>
             </>
           );
