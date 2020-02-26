@@ -6,7 +6,7 @@ const UserList = () => {
   const { user } = useContext(userListContext);
   return (
     <ul>
-      {user.total_count === undefined ? (
+      {!user.total_count ? (
         <EmptyResult />
       ) : (
         user.items.map(list => {
