@@ -17,7 +17,7 @@ function GetUsersData() {
         setLoading(!loading);
       } catch (e) {
         if (e) {
-          setError(error.message);
+          setError(e.message);
           console.log(error);
         }
       }
