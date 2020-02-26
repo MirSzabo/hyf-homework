@@ -4,7 +4,8 @@ function MyRepos() {
   const [repos, setRepos] = useState([]);
 
   useEffect(() => {
-    const MY_URL = `https://api.github.com/users/MirSzabo/repos`;
+    const MY_URL = "https://api.github.com/users/MirSzabo/repos";
+
     (async () => {
       try {
         const myData = await fetch(MY_URL);
