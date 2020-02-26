@@ -10,7 +10,8 @@ export const userListContext = createContext();
 
 function App() {
   const [input, setInput] = useState("");
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
+
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
