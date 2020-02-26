@@ -21,7 +21,8 @@ function MyRepos() {
   return (
     <div>
       <h2>My Repos</h2>
-      {repo.map(list => {
+      {repos.map(repo => {
+
         return (
           <div key={list.id}>
             <a href={list.html_url} target="_">
