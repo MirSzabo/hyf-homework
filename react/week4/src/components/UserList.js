@@ -3,26 +3,25 @@ import { userListContext } from "../App";
 import EmptyResult from "./EmptyResult";
 
 const UserList = () => {
-  const { user } = useContext(userListContext);
+  const { users } = useContext(userListContext);
   return (
     <ul>
-      {!user.total_count ? (
+      {!users.total_count ? (
         <EmptyResult />
       ) : (
-        user.items.map(list => {
+        users.items.map(user => {
           return (
-            <>
+            <li key={user.id}>
               <img
-                src={list.avatar_url}
+                src={user.avatar_url}
                 alt="user"
                 height="42"
                 width="42"
               ></img>
-              <a href={list.html_url} target="_">
-                <div>{list.login}</div>
-
+              <a href={user.html_url} target="_">
+                <div>{user.login}</div>
               </a>
-            </>
+            </li>
           );
         })
       )}

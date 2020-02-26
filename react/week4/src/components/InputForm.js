@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { userListContext } from "../App";
 
 const InputForm = () => {
-  const { input, setInput, setLoading } = useContext(userListContext);
+  const { input, setInput } = useContext(userListContext);
   return (
     <>
       <form>
@@ -12,7 +12,6 @@ const InputForm = () => {
             placeholder="User name"
             onChange={event => {
               setInput(event.target.value);
-              setLoading(true);
             }}
           />
       </form>
