@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css?family=Pacifico&display=swap");
+.App {
+  text-align: center;
+}
+h1, h2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Pacifico", cursive;
+}
+.search-container {
+  display: flex;
+  flex-direction: column;
+}
+.list-container {
+  color: black;
+  text-align: justify;
+  width: 100%;
+  padding: 5%;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+  text-align: center;
+  position: relative;
+}
