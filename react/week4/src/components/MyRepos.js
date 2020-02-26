@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 
 function MyRepos() {
-  const [repo, setRepo] = useState([]);
+  const [repos, setRepos] = useState([]);
+
   useEffect(() => {
     const MY_URL = `https://api.github.com/users/MirSzabo/repos`;
     (async () => {
