@@ -1,5 +1,5 @@
 carrot
 tomato
-potato
+potato-favourite
 onion
 garlic
