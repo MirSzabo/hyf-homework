@@ -1,7 +1,5 @@
 carrot
 tomato
-potato-oregano
+potato-favourite
 onion
 garlic
-broccoli
-cabbage
