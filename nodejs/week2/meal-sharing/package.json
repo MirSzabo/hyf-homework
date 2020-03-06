@@ -1,0 +1,19 @@
+{
+  "name": "meal-sharing",
+  "version": "1.0.0",
+  "description": "Meal sharing website",
+  "main": "src/backend",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon /src/backend"
+  },
+  "author": "Miroslava Szabo",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
