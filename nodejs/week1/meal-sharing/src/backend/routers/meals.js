@@ -8,3 +8,4 @@ router.get("/meals", (req, res) => {
   });
 
 module.exports = router;
+
